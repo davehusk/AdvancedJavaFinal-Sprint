@@ -15,13 +15,14 @@ public class DatabaseConnection {
                     .getResourceAsStream("config.properties")) {
                 Properties prop = new Properties();
                 prop.load(input);
-                connection = DriverManager.getConnection(
-                    prop.getProperty("db.url"),
-                    prop.getProperty("db.user"),
-                    prop.getProperty("db.password"));
+                
+                String url = prop.getProperty("db.url");
+                String user = prop.getProperty("db.user");
+                String password = prop.getProperty("db.password");
+                
+                connection = DriverManager.getConnection(url, user, password);
             } catch (Exception e) {
-                e.printStackTrace();
-                throw new SQLException("Failed to connect to database");
+                throw new SQLException("Failed to connect to database", e);
             }
         }
         return connection;

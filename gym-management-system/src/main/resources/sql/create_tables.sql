@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS memberships (
     membership_type VARCHAR(50) NOT NULL,
     description TEXT,
     cost DECIMAL(10,2) NOT NULL,
-    user_id INTEGER REFERENCES users(user_id),
+    user_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE,
     purchase_date DATE DEFAULT CURRENT_DATE
 );
 
@@ -25,5 +25,5 @@ CREATE TABLE IF NOT EXISTS workout_classes (
     class_name VARCHAR(100) NOT NULL,
     description TEXT,
     schedule TIMESTAMP NOT NULL,
-    trainer_id INTEGER REFERENCES users(user_id)
+    trainer_id INTEGER REFERENCES users(user_id) ON DELETE CASCADE
 );
